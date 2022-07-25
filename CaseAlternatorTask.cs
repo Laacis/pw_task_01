@@ -24,12 +24,13 @@ namespace Passwords
             }
             word[startIndex] = char.ToLower(word[startIndex]);
             AlternateCharCases(word, startIndex + 1, result);
+            //only if char upper and lower make difference and it's a character, we are going to change and call it again, since we don't want to have extra operations to run.
             if(char.ToUpper(word[startIndex]) != char.ToLower(word[startIndex]) && char.IsLetter(word[startIndex]))
             {
                 word[startIndex] = char.ToUpper(word[startIndex]);
                 AlternateCharCases(word, startIndex + 1, result);
             }
-
+            //by doing this, we save up number of operations to be performed, to compute dublicates and to get rid of them.
         }
     }
 }
