@@ -16,8 +16,20 @@ namespace Passwords
 
         static void AlternateCharCases(char[] word, int startIndex, List<string> result)
         {
-            // TODO
-            result.Add(new string (word));
+            // solution two
+            if (startIndex == word.Length)
+            {
+                result.Add(new string(word));
+                return;
+            }
+            word[startIndex] = char.ToLower(word[startIndex]);
+            AlternateCharCases(word, startIndex + 1, result);
+            if(char.ToUpper(word[startIndex]) != char.ToLower(word[startIndex]) && char.IsLetter(word[startIndex]))
+            {
+                word[startIndex] = char.ToUpper(word[startIndex]);
+                AlternateCharCases(word, startIndex + 1, result);
+            }
+
         }
     }
 }
